@@ -2,6 +2,13 @@
 
 public class CustomQueries
 {
+    public enum AvailableQueries
+    {
+        YearQuery,
+        ArtistQuery,
+        GenreQuery,
+        TopQuery
+    }
     public static List<Song> SongByYear(List<Song> songs, int year)
     {
         //https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/linq/
