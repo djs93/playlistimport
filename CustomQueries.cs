@@ -41,4 +41,17 @@ public class CustomQueries
 
         return songQueryResults;
     }
+    
+    
+    public static List<Song> TopSongs(List<Song> songs, int numberOfSongs)
+    {
+        IEnumerable<Song> songQuery =
+            from song in songs
+            orderby song.Plays
+            select song;
+
+        var songQueryResults = songQuery.Take(numberOfSongs).ToList();
+
+        return songQueryResults;
+    }
 }
