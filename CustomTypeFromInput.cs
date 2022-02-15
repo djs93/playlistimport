@@ -2,16 +2,16 @@
 
 public class CustomTypeFromInput
 {
-    public static string GetQueries(string message, bool retry, string retryMessage = "")
+    public static List<int> GetQueries(string message, bool retry, string retryMessage = "")
     {
-        var queryQuestion = $"{message}\n Available queries are:\n {CustomQueries.GetAvailableQueries()}";
-        Console.WriteLine(message);
-        var readVal = Console.ReadLine();
-        while (retry && string.IsNullOrEmpty(readVal))
+        var queryQuestion = $"{message}\nAvailable queries are:\n {CustomQueries.GetAvailableQueries()}";
+        Console.WriteLine(queryQuestion);
+        var readVal = CustomDataCleaners.CleanQueryInput(Console.ReadLine());
+        while (retry && readVal is {Count: 0})
         {
             Console.WriteLine(retryMessage);
-            readVal = Console.ReadLine();
+            readVal = CustomDataCleaners.CleanQueryInput(Console.ReadLine());
         }
-        return !string.IsNullOrEmpty(readVal) ? readVal : "none";
+        return readVal;
     }
 }
