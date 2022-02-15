@@ -1,4 +1,6 @@
-﻿namespace playlistimport;
+﻿using System.Text;
+
+namespace playlistimport;
 
 public class CustomQueries
 {
@@ -9,6 +11,27 @@ public class CustomQueries
         GenreQuery,
         TopQuery
     }
+
+    private static Dictionary<AvailableQueries, string> _queryNames = new Dictionary<AvailableQueries, string>()
+    {
+        {AvailableQueries.YearQuery, "Year"},
+        {AvailableQueries.ArtistQuery, "Artist"},
+        {AvailableQueries.GenreQuery, "Genre"},
+        {AvailableQueries.TopQuery, "Top Songs from query"}
+    };
+
+    public static string GetAvailableQueries()
+    {
+        StringBuilder result = new StringBuilder();
+        
+        foreach ((AvailableQueries key, string? value) in _queryNames)
+        {
+            result.Append($"\t{key}:{value}\n");
+        }
+
+        return result.ToString();
+    }
+    
     public static List<Song> SongByYear(List<Song> songs, int year)
     {
         //https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/linq/
