@@ -26,7 +26,7 @@ public class CustomQueries
         
         foreach ((AvailableQueries key, string? value) in _queryNames)
         {
-            result.Append($"\t{key}:{value}\n");
+            result.Append($"\t{(int)key}:{value}\n");
         }
 
         return result.ToString();
