@@ -5,7 +5,7 @@ public class CustomTypeFromInput
     public static List<CustomQueries.AvailableQueries> GetQueries(string message, bool retry, string retryMessage = "")
     {
         var queryQuestion = $"{message}\nAvailable queries are:\n {CustomQueries.GetAvailableQueries()}";
-        Console.WriteLine(queryQuestion);
+        Console.Write(queryQuestion);
         var readVal = CustomDataCleaners.CleanQueryInput(Console.ReadLine());
         while (retry && readVal is {Count: 0})
         {
