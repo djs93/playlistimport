@@ -46,7 +46,7 @@ public class CustomQueries
         //https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/linq/
         IEnumerable<Song> songQuery =
             from song in songs
-            orderby song.Plays
+            orderby song.Plays descending 
             where song.Year.Year == year
             select song;
 
@@ -64,7 +64,7 @@ public class CustomQueries
     {
         IEnumerable<Song> songQuery =
             from song in songs
-            orderby song.Plays
+            orderby song.Plays descending
             where song.Artist == artist
             select song;
 
@@ -82,7 +82,7 @@ public class CustomQueries
     {
         IEnumerable<Song> songQuery =
             from song in songs
-            orderby song.Plays
+            orderby song.Plays descending
             where song.Genre == genre
             select song;
 
@@ -100,7 +100,7 @@ public class CustomQueries
     {
         IEnumerable<Song> songQuery =
             from song in songs
-            orderby song.Plays
+            orderby song.Plays descending
             select song;
 
         var songQueryResults = songQuery.Take(numberOfSongs).ToList();
