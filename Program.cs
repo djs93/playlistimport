@@ -16,7 +16,11 @@ var filePath = FilePathOperations.GetFilePath("Enter The Absolute File Path for 
 
 var records = CsvRead.ReadDistinctRecords(filePath, new SongMap());
 
-var songQuery = CustomQueries.SongByYear(records, GetTypeFromInput.GetInt("Enter The year\r", 2015));
+var selectedQueries = CustomTypeFromInput.GetQueries("Which Queries would you like to select?", true, retryMessage:"Please enter valid queries from the numbers above!");
+Console.WriteLine($"Selected Queries: {string.Join(", ", selectedQueries)}\n");
+
+var songQuery = CustomQueries.RunSongQueries(selectedQueries, records);
+//var songQuery = CustomQueries.SongByYear(records, GetTypeFromInput.GetInt("Enter The year\r", 2015));
 
 CustomPrintables.PrintSongList(songQuery);
 
