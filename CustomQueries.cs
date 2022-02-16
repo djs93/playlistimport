@@ -57,7 +57,7 @@ public class CustomQueries
 
     private static List<Song> AskSongByYear(List<Song> songs)
     {
-        return SongByYear(songs, GetTypeFromInput.GetInt("Enter The year (Enter for 2015)\r", 2015));
+        return SongByYear(songs, GetTypeFromInput.GetInt("\nEnter The year (Enter for 2015)\r", 2015));
     }
     
     public static List<Song> SongByArtist(List<Song> songs, string artist)
@@ -75,7 +75,7 @@ public class CustomQueries
     
     private static List<Song> AskSongByArtist(List<Song> songs)
     {
-        return SongByArtist(songs, GetTypeFromInput.GetString("Enter The artist\r", ""));
+        return SongByArtist(songs, GetTypeFromInput.GetString("\nEnter The artist\r", ""));
     }
     
     public static List<Song> SongByGenre(List<Song> songs, string genre)
@@ -93,7 +93,7 @@ public class CustomQueries
     
     private static List<Song> AskSongByGenre(List<Song> songs)
     {
-        return SongByGenre(songs, GetTypeFromInput.GetString("Enter The genre (Enter for Pop)\r", "Pop"));
+        return SongByGenre(songs, GetTypeFromInput.GetString("\nEnter The genre (Enter for Pop)\r", "Pop"));
     }
     
     public static List<Song> TopSongs(List<Song> songs, int numberOfSongs)
@@ -111,7 +111,7 @@ public class CustomQueries
     
     private static List<Song> AskTopSongs(List<Song> songs)
     {
-        return TopSongs(songs, GetTypeFromInput.GetInt("Enter the number of songs for Top Songs (Enter for 10)\r", 10));
+        return TopSongs(songs, GetTypeFromInput.GetInt("\nEnter the number of songs for Top Songs (Enter for 10)\r", 10));
     }
 
     public static List<Song>? RunSongQueries(List<AvailableQueries> queryTypes, List<Song>? songsToQuery)
