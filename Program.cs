@@ -16,12 +16,26 @@ var filePath = FilePathOperations.GetFilePath("Enter The Absolute File Path for 
 
 var records = CsvRead.ReadDistinctRecords(filePath, new SongMap());
 
-var selectedQueries = CustomTypeFromInput.GetQueries("Which Queries would you like to select?", true, retryMessage:"Please enter valid queries from the numbers above!");
-Console.WriteLine($"Selected Queries: {string.Join(", ", selectedQueries)}\n");
-
-var songQuery = CustomQueries.RunSongQueries(selectedQueries, records);
-//var songQuery = CustomQueries.SongByYear(records, GetTypeFromInput.GetInt("Enter The year\r", 2015));
-
-CustomPrintables.PrintSongList(songQuery);
-
-CsvWrite.WriteListToCsv(songQuery);
+//Ask what queries they'd like to select (strip everything except numbers)
+var wouldLikeToExit = "n";
+while (!wouldLikeToExit.Equals("y"))
+{
+    //Get Queries
+    var selectedQueries = CustomTypeFromInput.GetQueries("\nWhich Queries would you like to select?", true, retryMessage:"Please enter valid queries from the numbers above!");
+    Console.WriteLine($"Selected Queries: {string.Join(", ", selectedQueries)}");
+    //Run Queries sequentially
+    var songQuery = CustomQueries.RunSongQueries(selectedQueries, records);
+    //Print Queries
+    CustomPrintables.PrintSongList(songQuery);
+    //Ask for file write
+    var saveRequest = GetTypeFromInput.GetString("\nWould you like to save these query results? (y/n, enter for n)", "n").ToLower();
+    if (saveRequest.Equals("y"))
+    {
+        //If true, ask for file name
+        var fileName = GetTypeFromInput.GetString("\nEnter filepath (enter for ./Output.csv)", "./Output.csv").ToLower();
+        //Write to file
+        CsvWrite.WriteListToCsv(songQuery, fileName);
+    }
+    //Ask for Exit
+    wouldLikeToExit = GetTypeFromInput.GetString("\nWould you like to exit? (y/n, enter for y)", "y").ToLower();
+}
