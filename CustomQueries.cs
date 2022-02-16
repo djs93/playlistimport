@@ -65,7 +65,7 @@ public class CustomQueries
         IEnumerable<Song> songQuery =
             from song in songs
             orderby song.Plays descending
-            where song.Artist == artist
+            where song.Artist.Contains(artist)
             select song;
 
         var songQueryResults = songQuery.ToList();
