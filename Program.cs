@@ -16,6 +16,17 @@ var filePath = FilePathOperations.GetFilePath("Enter The Absolute File Path for 
 
 var records = CsvRead.ReadDistinctRecords(filePath, new SongMap());
 
+//Ask what queries they'd like to select (strip everything except numbers)
+var wouldLikeToExit = "n";
+while (!wouldLikeToExit.ToLower().Equals("y"))
+{
+    //Get Queries
+    //Run Queries sequentially
+    //Print Queries
+    //Ask for file write
+    //If true, ask for file name
+    //Ask for Exit
+}
 var selectedQueries = CustomTypeFromInput.GetQueries("Which Queries would you like to select?", true, retryMessage:"Please enter valid queries from the numbers above!");
 Console.WriteLine($"Selected Queries: {string.Join(", ", selectedQueries)}\n");
 
