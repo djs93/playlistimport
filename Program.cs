@@ -21,18 +21,17 @@ var wouldLikeToExit = "n";
 while (!wouldLikeToExit.ToLower().Equals("y"))
 {
     //Get Queries
+    var selectedQueries = CustomTypeFromInput.GetQueries("Which Queries would you like to select?", true, retryMessage:"Please enter valid queries from the numbers above!");
+    Console.WriteLine($"Selected Queries: {string.Join(", ", selectedQueries)}\n");
     //Run Queries sequentially
+    var songQuery = CustomQueries.RunSongQueries(selectedQueries, records);
     //Print Queries
+    CustomPrintables.PrintSongList(songQuery);
     //Ask for file write
     //If true, ask for file name
+    CsvWrite.WriteListToCsv(songQuery);
     //Ask for Exit
-}
-var selectedQueries = CustomTypeFromInput.GetQueries("Which Queries would you like to select?", true, retryMessage:"Please enter valid queries from the numbers above!");
-Console.WriteLine($"Selected Queries: {string.Join(", ", selectedQueries)}\n");
 
-var songQuery = CustomQueries.RunSongQueries(selectedQueries, records);
+
 //var songQuery = CustomQueries.SongByYear(records, GetTypeFromInput.GetInt("Enter The year\r", 2015));
-
-CustomPrintables.PrintSongList(songQuery);
-
-CsvWrite.WriteListToCsv(songQuery);
+}
