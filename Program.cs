@@ -28,10 +28,13 @@ while (!wouldLikeToExit.ToLower().Equals("y"))
     //Print Queries
     CustomPrintables.PrintSongList(songQuery);
     //Ask for file write
-    //If true, ask for file name
-    CsvWrite.WriteListToCsv(songQuery);
+    var saveRequest = GetTypeFromInput.GetString("Would you like to save these query results? (y/n, enter for n)", "n").ToLower();
+    if (saveRequest.Equals("y"))
+    {
+        //If true, ask for file name
+        var fileName = GetTypeFromInput.GetString("Enter filepath (enter for ./Output.csv)", "./Output.csv").ToLower();
+        //Write to file
+        CsvWrite.WriteListToCsv(songQuery, fileName);
+    }
     //Ask for Exit
-
-
-//var songQuery = CustomQueries.SongByYear(records, GetTypeFromInput.GetInt("Enter The year\r", 2015));
 }
