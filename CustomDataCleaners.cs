@@ -2,9 +2,9 @@
 
 public static class CustomDataCleaners
 {
-    public static List<int> CleanQueryInput(string? queryInput)
+    public static List<CustomQueries.AvailableQueries> CleanQueryInput(string? queryInput)
     {
-        List<int> resultList = new List<int>();
+        List<CustomQueries.AvailableQueries> resultList = new List<CustomQueries.AvailableQueries>();
         if (queryInput == null)
         {
             return resultList;
@@ -15,7 +15,7 @@ public static class CustomDataCleaners
         resultList.AddRange(
             from letter in cleanedQueryStr 
             where char.IsDigit(letter) && int.Parse(letter.ToString()) <= maxQueryVal
-            select int.Parse(letter.ToString())
+            select (CustomQueries.AvailableQueries)int.Parse(letter.ToString())
         );
 
         return resultList;

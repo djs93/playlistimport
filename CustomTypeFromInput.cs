@@ -2,7 +2,7 @@
 
 public class CustomTypeFromInput
 {
-    public static List<int> GetQueries(string message, bool retry, string retryMessage = "")
+    public static List<CustomQueries.AvailableQueries> GetQueries(string message, bool retry, string retryMessage = "")
     {
         var queryQuestion = $"{message}\nAvailable queries are:\n {CustomQueries.GetAvailableQueries()}";
         Console.WriteLine(queryQuestion);
