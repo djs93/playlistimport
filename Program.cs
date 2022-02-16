@@ -18,7 +18,7 @@ var records = CsvRead.ReadDistinctRecords(filePath, new SongMap());
 
 //Ask what queries they'd like to select (strip everything except numbers)
 var wouldLikeToExit = "n";
-while (!wouldLikeToExit.ToLower().Equals("y"))
+while (!wouldLikeToExit.Equals("y"))
 {
     //Get Queries
     var selectedQueries = CustomTypeFromInput.GetQueries("Which Queries would you like to select?", true, retryMessage:"Please enter valid queries from the numbers above!");
@@ -37,4 +37,5 @@ while (!wouldLikeToExit.ToLower().Equals("y"))
         CsvWrite.WriteListToCsv(songQuery, fileName);
     }
     //Ask for Exit
+    wouldLikeToExit = GetTypeFromInput.GetString("Would you like to exit? (y/n, enter for y)", "y").ToLower();
 }
